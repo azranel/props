@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   mount EasyTokens::Engine, at: 'et'
   root 'home#index'
+
+  get "healthcheck", to: proc { [200, {}, [""]] }
+
   get 'app' => 'authenticated#main_app'
   get 'app/*path' => 'authenticated#main_app'
 
